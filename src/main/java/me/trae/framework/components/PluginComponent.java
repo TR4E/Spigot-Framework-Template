@@ -1,7 +1,7 @@
 package me.trae.framework.components;
 
 import me.trae.framework.SpigotManager;
-import me.trae.utility.UtilFrame;
+import me.trae.framework.utility.UtilFrame;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -26,10 +26,6 @@ public interface PluginComponent {
 
     default <E extends SpigotManager> E getManagerByClass(final Class<E> clazz) {
         return UtilFrame.getFrameByClass(this.getManagers(), clazz);
-    }
-
-    default <E extends SpigotManager> E getManagerByTypeClass(final Class<E> clazz) {
-        return UtilFrame.getFrameByTypeClass(this.getManagers(), clazz);
     }
 
     default <E extends SpigotManager> List<E> getManagersByClass(final Class<E> clazz) {
