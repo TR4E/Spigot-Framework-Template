@@ -3,27 +3,26 @@ package me.trae.framework.utility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-import java.util.List;
-
 public class UtilMessage {
 
-    private static String getPrefix(final String prefix) {
+    private static String getPrefix(final ChatColor chatColor, final String prefix) {
         if (prefix == null) {
             return "";
         }
 
-        return ChatColor.BLUE + (prefix + ">") + " " + ChatColor.GRAY;
+        return String.format("%s> %s", chatColor + prefix, ChatColor.GRAY);
     }
 
     public static void log(final String prefix, String message) {
-        final ChatColor defaultChatColor = (prefix != null ? ChatColor.GRAY : ChatColor.WHITE);
+        final ChatColor resetChatColor = (prefix != null ? ChatColor.GRAY : ChatColor.WHITE);
+
+        message = message.replaceAll("<reset>", resetChatColor.toString());
+
 
         for (final ChatColor chatColor : ChatColor.values()) {
             message = message.replaceAll(String.format("<%s>", chatColor.name().toLowerCase()), chatColor.toString());
-            message = message.replaceAll(String.format("</%s>", chatColor.name().toLowerCase()), defaultChatColor.toString());
+            message = message.replaceAll(String.format("</%s>", chatColor.name().toLowerCase()), resetChatColor.toString());
         }
-
-        message = message.replaceAll("<reset>", defaultChatColor.toString());
 
         Bukkit.getConsoleSender().sendMessage(getPrefix(prefix) + message);
     }
