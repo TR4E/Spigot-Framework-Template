@@ -24,6 +24,6 @@ public class UtilMessage {
             message = message.replaceAll(String.format("</%s>", chatColor.name().toLowerCase()), resetChatColor.toString());
         }
 
-        Bukkit.getConsoleSender().sendMessage(getPrefix(prefix) + message);
+        Bukkit.getConsoleSender().sendMessage(getPrefix(ChatColor.BLUE, prefix) + message);
     }
 }
