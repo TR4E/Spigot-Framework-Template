@@ -18,7 +18,6 @@ public class UtilMessage {
 
         message = message.replaceAll("<reset>", resetChatColor.toString());
 
-
         for (final ChatColor chatColor : ChatColor.values()) {
             message = message.replaceAll(String.format("<%s>", chatColor.name().toLowerCase()), chatColor.toString());
             message = message.replaceAll(String.format("</%s>", chatColor.name().toLowerCase()), resetChatColor.toString());
